@@ -42,8 +42,27 @@
   padding: 4px;
   border: 1px solid rgb(206, 212, 218);
 }
-
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.search-container {
+  margin: 20px;
+}
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+.search-table th {
+  background-color: #04aa6d;
+  color: white;
+}
 .search-table {
+  /* box-sizing: border-box; */
   width: 100%;
   margin-top: 30px;
 }
@@ -60,7 +79,12 @@
   font-weight: 700;
 }
 
-.pagination {
+.show-info {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+/* .pagination {
   display: inline-block;
 }
 
@@ -80,4 +104,4 @@
 .pagination a:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
-}
+} */

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "../style.css";
 import axios from "axios";
 import debounce from "lodash.debounce";
+import Spinner from "./Spinner";
 
 function Search() {
   const [input, setInput] = useState("");
@@ -10,7 +11,7 @@ function Search() {
   const [pageValue, setPageValue] = useState(1);
   const [limit, setLimit] = useState(5);
   const [paginationVal, setPaginationVal] = useState(1);
-
+  const [isloading, setIsLoading] = useState(false);
   // useEffect(() => {
   //   console.log(data);
   //   setTimeout(() => {
@@ -26,28 +27,33 @@ function Search() {
   });
 
   const fetchData = useCallback((value) => {
+    setIsLoading(true);
     // var axios = require("axios").default;
+    if (value.length > 0) {
+      var options = {
+        method: "GET",
+        url: "https://wft-geo-db.p.rapidapi.com/v1/geo/cities",
+        params: { countryIds: "IN", namePrefix: value, limit: "10" },
+        headers: {
+          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+          "x-rapidapi-key":
+            "4ac5e3352fmshe6ac515ca3b8ccap1f0045jsnf0a504a87bbe",
+        },
+      };
 
-    var options = {
-      method: "GET",
-      url: "https://wft-geo-db.p.rapidapi.com/v1/geo/cities",
-      params: { countryIds: "IN", namePrefix: value, limit: "10" },
-      headers: {
-        "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-        "x-rapidapi-key": "4ac5e3352fmshe6ac515ca3b8ccap1f0045jsnf0a504a87bbe",
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        setData(response.data);
-        setPageCount(response.data.metadata.totalcount);
-        setPaginationVal(response.data.metadata.totalcount / limit);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+      axios
+        .request(options)
+        .then(function (response) {
+          setData(response.data);
+          setIsLoading(false);
+          setPageCount(response.data.metadata.totalcount);
+          setPaginationVal(response.data.metadata.totalcount / limit);
+        })
+        .catch(function (error) {
+          console.error(error);
+          setIsLoading(false);
+        });
+    }
   }, []);
   const handleChange = (e) => {
     console.log("g", e.target.value);
@@ -108,20 +114,21 @@ function Search() {
   // }
 
   return (
-    <div>
-      <div className="input-box">
-        <input
-          value={input}
-          id="search-box"
-          className="search-box"
-          type="text"
-          placeholder="Search places..."
-          onChange={handleChange}
-        ></input>
+    <>
+      <div className="search-container">
+        <div className="input-box">
+          <input
+            value={input}
+            id="search-box"
+            className="search-box"
+            type="text"
+            placeholder="Search places..."
+            onChange={handleChange}
+          ></input>
 
-        <span>Ctrl+/</span>
-      </div>
-      <div className="search-table-container">
+          <span>Ctrl+/</span>
+        </div>
+
         <table className="search-table">
           <tr>
             <th>#</th>
@@ -138,6 +145,17 @@ function Search() {
             );
           })}
         </table>
+        {isloading ? (
+          <Spinner />
+        ) : (
+          <div className="show-info">
+            {Object.keys(data).length == 0
+              ? "Start searching"
+              : data?.data?.length == 0
+              ? "No result found"
+              : ""}
+          </div>
+        )}
         {/* <div class="pagination">
           <a id="btn_prev" href="#" onClick={prevPage}>
             &laquo;
@@ -152,7 +170,7 @@ function Search() {
           </a>
         </div> */}
       </div>
-    </div>
+    </>
   );
 }
 
