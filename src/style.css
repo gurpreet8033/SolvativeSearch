@@ -1,0 +1,83 @@
+* {
+  /* box-sizing: border-box; */
+}
+
+.search-box {
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(206, 212, 218);
+  border-radius: 4px;
+  /* height: 38px;
+  padding: 6px 12px;
+  width: 241px; */
+  height: 85%;
+  /* padding: 6px 12px; */
+  width: 100%;
+  margin-right: auto;
+  /* padding-right: 60px; */
+}
+.search-box:focus {
+  border-color: #7952b3;
+  box-shadow: 0 0 0 3px rgb(121 82 179 / 25%);
+  outline: 0;
+}
+.input-box {
+  position: relative;
+  height: 38px;
+  padding: 6px 12px;
+  width: 241px;
+  margin-right: auto;
+  position: relative;
+}
+
+.input-box span {
+  box-sizing: border-box;
+  position: absolute;
+  right: 14px;
+  top: 13px;
+  font-size: 12px;
+  border-color: rgb(222, 226, 230);
+  border-radius: 2px;
+  height: 24px;
+  padding: 4px;
+  border: 1px solid rgb(206, 212, 218);
+}
+
+.search-table {
+  width: 100%;
+  margin-top: 30px;
+}
+.search-table,
+.search-table tr {
+  border: 1px solid rgb(222, 226, 230);
+  border-collapse: collapse;
+}
+.search-table td,
+.search-table th {
+  padding: 8px;
+}
+.search-table th {
+  font-weight: 700;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
