@@ -150,7 +150,7 @@ function Search() {
         ) : (
           <div className="show-info">
             {Object.keys(data).length == 0
-              ? "Start searching"
+              ? "Start searching..."
               : data?.data?.length == 0
               ? "No result found"
               : ""}
