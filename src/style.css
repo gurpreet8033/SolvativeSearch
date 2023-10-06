@@ -80,12 +80,13 @@ td {
 }
 
 .show-info {
-  margin-top: 5px;
+  margin-top: 20px;
   font-size: 20px;
 }
 
-/* .pagination {
+.pagination {
   display: inline-block;
+  margin-top: 20px;
 }
 
 .pagination a {
@@ -104,4 +105,4 @@ td {
 .pagination a:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
-} */
+}

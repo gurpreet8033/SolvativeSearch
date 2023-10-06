@@ -156,19 +156,19 @@ function Search() {
               : ""}
           </div>
         )}
-        {/* <div class="pagination">
-          <a id="btn_prev" href="#" onClick={prevPage}>
+        <div class="pagination">
+          <a id="btn_prev" href="#">
             &laquo;
           </a>
 
           <a href="#" class="active">
-            2
+            1
           </a>
 
-          <a id="btn_next" href="#" onClick={nextPage}>
+          <a id="btn_next" href="#">
             &raquo;
           </a>
-        </div> */}
+        </div>
       </div>
     </>
   );
